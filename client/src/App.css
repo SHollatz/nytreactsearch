@@ -1,0 +1,150 @@
+  
+#main {
+  width: 960px;
+  height: 400px;
+  background-image: url("./images/advertise-advertisement-advertising-announcement-article-articles-1437949-pxhere.com.jpg");
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left:20px;
+  padding-top: 5%;
+  align-items: center;
+  justify-content: center;
+}
+
+#root {
+  width: 960px;
+  margin: 20px auto;
+}
+
+
+#main_title,
+#main_subtitle,
+#main_description {
+  color: white;
+  text-align: center;      
+}
+
+#main_title {
+  font-size: 60px;
+  margin: 130px auto 20px auto;
+}
+
+#main_subtitle {
+  margin-top: 20px;
+  font-size: 35px;
+}
+
+#main_description {
+  font-size: 25px;
+  margin-top: 20px;
+}
+
+
+#articles {
+  display: inline-block;
+  overflow: auto;
+  width: 60%;
+  height: 700px;
+}
+#notes {
+  float: right;
+  margin-right: 30px;
+  width: 30%;
+}
+
+#header_title {
+  padding: 0 10px 0 10px;
+  width: 400px;
+  height: 60px;
+  margin: 0px;
+  font-size: 22px;
+  line-height: 2.5;
+  letter-spacing: 2px;
+  background-color: rgb(5, 60, 148);
+  border-radius: 0px 0px 5px 5px;
+  color: white;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#search,
+#results,
+#saved {
+  width:960px;
+  height: 200px;
+  background-color: rgb(206, 230, 245);
+  margin: 20px auto;
+}
+
+#btnSaved {
+  float: right;
+}
+
+.navigation {
+  width: 700px;
+  height: 60px;
+  padding: 20px 0 20px 0;
+  font-size: 16px;
+  text-align: center;
+  float: right;
+}
+
+textarea, input {
+  display: block;
+  width: 100%;
+  background-color: #FCF5C7;
+}
+input {
+  height: 36px;
+  font-size: 24px;
+}
+textarea {
+  height: 200px;
+  font-size: 18px;
+}
+
+header {
+  width: 100%;
+  height: 60px; 
+  font-family: 'Domine', serif;
+  background-color: #ffffff;
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-color: rgb(5, 60, 148);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+body { background-color: rgb(45, 100, 202) }
+
+button {
+float: right;
+background-color: rgb(5, 60, 148);
+color: white;
+border: 0.5px;
+border-radius: 3px;
+
+}
+
+a {
+color: rgb(5, 60, 148);
+padding-top: 0px;
+padding: 0 20px 0 20px;
+float: right;
+text-decoration: none;
+}
+
+p {
+margin: 5px;
+}
+
+p, h4 {
+  background-color: rgb(206, 230, 245);
+  padding: 5px;
+}
+
