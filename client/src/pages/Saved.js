@@ -1,11 +1,11 @@
 import React from "react"
 
 const Saved = props => (
-  <div id="saved">
-    <h4>Saved Articles</h4>
-    <div>
-      {/* <button id="btnSaved">Save</button> */}
-    </div>
+  <div>
+    <p id={props.dataId}>Title: {props.title}
+      <br></br>Link: {props.url}
+      <button className="btnRemove" onClick={props.remove(props.id)}>Remove</button>
+      <br></br>Published on {props.date} at {props.time}</p> 
   </div>
 );
 
