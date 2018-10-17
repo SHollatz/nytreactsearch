@@ -3,12 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Articles from "./pages/Articles";
 import './App.css';
 
-import Header from './components/Header';
-
 const App = () => (
   <Router>
     <div>
-      <Header />
       <Switch>
         <Route exact path="/" component={Articles} />
         <Route exact path="/articles" component={Articles} />

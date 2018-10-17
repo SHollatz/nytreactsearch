@@ -1,15 +1,23 @@
 import React from "react";
 import "./Header.css";
 
-const Header = () => (
+const Header = (props) => (
   <div>
     <div className="header_content">
-      <h1 id="header_title">New York Times Search</h1>
+      
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a className="navbar-brand" href="/">New York Times Search</a>
+        <a className="navbar-brand" href={props.linkSearch}>
+          Search
+        </a>
+        <a className="navbar-brand" href="/">
+          Saved
+        </a>
+      </nav>
     </div>
     <div id="main">
-      <h1 id="main_title">React Mongo Scraper</h1>
+      <h1 id="main_title">React Mongo Search</h1>
       <h2 id="main_subtitle">New York Times Edition</h2>
-      <h3 id="main_description"><i>Keep Notes with a Click on an Article</i></h3>
     </div>
   </div>
 );

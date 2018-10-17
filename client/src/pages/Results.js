@@ -5,7 +5,7 @@ const Results = props => (
     
     <p id={props.dataId}>Title: {props.title}
       <br></br>Link: {props.url}
-      <button className="btnSave" onClick={props.save(props.id)}>Save</button>
+      <button className="btnSave" onClick={() => props.save(props.id)}>Save</button>
       <br></br>Published on {props.date} at {props.time}</p>
     
   </div>

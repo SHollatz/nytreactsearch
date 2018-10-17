@@ -4,55 +4,48 @@ import Form from "../components/Form"
 import Results from "./Results";
 import Saved from "./Saved";
 import API from "../utils/API";
+import Header from "../components/Header"
+// import { Col, Row, Container } from "../components/Grid";
+// import { List, ListItem } from "../components/List";
 
 class Search extends Component {
   state = {
     searchTopic: "",
     searchStart: "",
     searchEnd: "",
-    results: [{
-      id: 1,
-      title: "Hamburg is nice!",
-      url: "www.hamburg.de",
-      date: "2018-01-17",
-      time: "14:32:15"
-    },
-    {
-      id: 2,
-      title: "Berlin is artsy!",
-      url: "www.berlin.de",
-      date: "2000-01-17",
-      time: "10:00:00"
-    }],
-    savedArticles: [{
-      id: 3,
-      title: "People from Leipzig speaks funny!",
-      url: "www.leipzig.de",
-      date: "1980-003-03",
-      time: "9:55:55"
-    },
-    {
-      id: 4,
-      title: "Essen sucks!",
-      url: "www.essen.de",
-      date: "2005-05-05",
-      time: "16:16:16"
-    }
-    ]
+    query: "",
+    results: [],
+    savedArticles: []
   };
 
-
-  componentDidMount() {
-    this.loadArticles();
-  }
+  // componentDidMount() {
+  //    this.loadArticles();
+  // }
 
   searchNYT = (topic, start, end) => {
+    console.log("inside searchNYT");
+    console.log("parameter: ", topic, start, end);
     API.search(topic, start, end)
       .then(res => {
-        console.log("res.data.data", res.data.data);
-        this.setState({ results: res.data.data })
+        console.log("back in Articles");
+        console.log("res.data.data", res.data.response.docs);
+        const queryResults = res.data.response.docs;
+        const results = queryResults.map(element => {
+          const result = {}
+          result.title = element["headline"]["main"];
+          result.url = element["web_url"];
+          const pub = element["pub_date"];
+          result.date = pub.split("T")[0];
+          const time = pub.split("T")[1];
+          result.time = time.split("+")[0];
+          console.log("result", result);
+          return result;
+        });
+        
+        console.log("results: ", results);
+        this.setState({ results: results })
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err))
   };
 
   handleInputChange = event => {
@@ -66,10 +59,12 @@ class Search extends Component {
   // When the form is submitted, search the Giphy API for `this.state.search`
   handleFormSubmit = event => {
     event.preventDefault();
+    console.log("handleFormSubmit");
     this.searchNYT(this.state.searchTopic, this.state.searchStart, this.state.searchEnd);
   };
 
   saveArticle = event => {
+    console.log("inside saveArticle");
     API.saveThisArticle({
       id: this.state.id,
       title: this.state.title,
@@ -82,8 +77,14 @@ class Search extends Component {
   };
 
   loadArticles = () => {
-    API.getSavedArticles()
-      .then(res => this.setState({ savedArticles: res.data}))
+    API.getSavedArticles(() => console.log("inside API call")
+    )
+      .then(res => {
+        console.log("res", res);
+        return (
+          this.setState({ savedArticles: res.data }))
+      }
+      )
       .catch(err => console.log(err));
   };
 
@@ -95,7 +96,9 @@ class Search extends Component {
 
   render() {
     return (
-      <div id="search">
+      <div id="article">
+        <Header
+          linkSearch={this.query} />
         <h3 className="title">Search</h3>
         <Form
           label="topic"
@@ -131,8 +134,7 @@ class Search extends Component {
         <h3 className="title">Results</h3>
         {this.state.results.map(result => (
           <Results
-            id={result.id}
-            key={result.id}
+            key={result.url}
             title={result.title}
             url={result.url}
             date={result.date}
