@@ -23,6 +23,7 @@ export default {
   //   return axios.get(BASEURL + topic + '&from='+ fromDate + '&to='+toDate + '&fl=web_url, headline, pub_date' + APIKEY);
   // },
   saveThisArticle: function(articleData) {
+    console.log("inside saveThisArticle: ", articleData);
     return axios.post("/api/articles/", articleData);
   },
   deleteArticle: function(id) {

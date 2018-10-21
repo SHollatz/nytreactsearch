@@ -13,10 +13,10 @@ const articleSchema = new Schema({
     required: true
   },
   date: {
-    type: Date,
+    type: String,
   },
   time: {
-    type: Date,
+    type: String,
   }
 });
 

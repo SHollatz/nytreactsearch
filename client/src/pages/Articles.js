@@ -38,7 +38,9 @@ class Search extends Component {
           result.date = pub.split("T")[0];
           const time = pub.split("T")[1];
           result.time = time.split("+")[0];
-          console.log("result", result);
+          //console.log("typeof url is ", typeof result.url);
+          //console.log("typeof title is ", typeof result.title);
+          //console.log("result", result);
           return result;
         });
         
@@ -63,14 +65,16 @@ class Search extends Component {
     this.searchNYT(this.state.searchTopic, this.state.searchStart, this.state.searchEnd);
   };
 
-  saveArticle = event => {
+  saveArticle = (event, title, url, date, time) => {
+    event.preventDefault();
     console.log("inside saveArticle");
+    console.log("typeof date is ", typeof date);
+    console.log("typeof time is ", typeof time);
     API.saveThisArticle({
-      id: this.state.id,
-      title: this.state.title,
-      url: this.state.url,
-      date: this.state.date,
-      time: this.state.time
+      title: title,
+      url: url,
+      date: date,
+      time: time
     })
       .then(res => this.loadArticles())
       .catch(err => console.log(err));
@@ -135,6 +139,7 @@ class Search extends Component {
         {this.state.results.map(result => (
           <Results
             key={result.url}
+            id={result.url}
             title={result.title}
             url={result.url}
             date={result.date}
